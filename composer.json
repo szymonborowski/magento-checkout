@@ -1,0 +1,20 @@
+{
+  "name": "szymonborowski/module-checkout",
+  "description": "Magento 2 module for improving checkout process",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "GPL-3.0-or-later"
+  ],
+  "require": {
+    "php": "~8.1.0||~8.2.0||~8.3.0"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Szymonborowski\\Checkout\\": ""
+    }
+  }
+}

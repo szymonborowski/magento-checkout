@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Szymon Borowski <szymon.borowski@gmail.com>
+ * @copyright Copyright (c) 2024, Szymon Borowski
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="order_types_edit"/>
+        </referenceContainer>
+    </body>
+</page>

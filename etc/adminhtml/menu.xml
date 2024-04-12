@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Szymon Borowski <szymon.borowski@gmail.com>
+ * @copyright Copyright (c) 2024, Szymon Borowski
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Szymonborowski_Checkout::order_types" title="Order Types Options" module="Szymonborowski_Checkout"
+             sortOrder="1000"
+             parent="Magento_Sales::sales_operation" resource="Szymonborowski_Checkout::sales_order_types"
+             action="order_types/grid/index"/>
+    </menu>
+</config>

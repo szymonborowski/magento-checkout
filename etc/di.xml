@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Szymon Borowski <szymon.borowski@gmail.com>
+ * @copyright Copyright (c) 2024, Szymon Borowski
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Start preference section -->
+    <preference for="Szymonborowski\Checkout\Api\Data\OrderTypeOptionsInterface"
+                type="Szymonborowski\Checkout\Model\OrderTypeOptions"/>
+    <preference for="Szymonborowski\Checkout\Api\OrderTypeOptionsRepositoryInterface"
+                type="Szymonborowski\Checkout\Service\OrderTypeOptionsRepository"/>
+    <preference for="Szymonborowski\Checkout\Api\Data\OrderTypeOptionsSearchResultsInterface"
+                type="Szymonborowski\Checkout\Model\OrderTypeOptionsSearchResults"/>
+    <preference for="Szymonborowski\Checkout\Api\Data\OrderTypeInterface"
+                type="Szymonborowski\Checkout\Model\OrderType"/>
+    <preference for="Szymonborowski\Checkout\Api\OrderTypeRepositoryInterface"
+                type="Szymonborowski\Checkout\Service\OrderTypeRepository"/>
+    <preference for="Szymonborowski\Checkout\Api\Data\OrderTypeSearchResultsInterface"
+                type="Szymonborowski\Checkout\Model\OrderTypeSearchResults"/>
+    <preference for="Szymonborowski\Checkout\Api\OrderTypeManagementInterface"
+                type="Szymonborowski\Checkout\Model\OrderTypeManagement"/>
+    <!-- End preference section -->
+
+    <!-- Start plugin section -->
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="order_type_attribute" type="Szymonborowski\Checkout\Plugin\Sales\OrderRepository"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Grid\Collection">
+        <plugin name="DrSalesOrderGrid" type="Szymonborowski\Checkout\Plugin\Sales\Order\Grid\Collection" />
+    </type>
+    <!-- End plugin section -->
+
+    <!-- Start constructor injection section -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="order_types_listing_data_source" xsi:type="string">OrderTypesCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- End constructor injection section -->
+
+    <!-- Start virtual types section -->
+    <virtualType name="OrderTypesCollection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sb_order_type_option</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Szymonborowski\Checkout\Model\ResourceModel\OrderTypeOptions
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- End virtual types section -->
+</config>

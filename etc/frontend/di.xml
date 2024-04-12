@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Szymon Borowski <szymon.borowski@gmail.com>
+ * @copyright Copyright (c) 2024, Szymon Borowski
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Start constructor injection section -->
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="orderTypeLayoutPreprocessor" xsi:type="object">Szymonborowski\Checkout\Block\Checkout\OrderTypeLayoutPreprocessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- End constructor injection section -->
+
+</config>

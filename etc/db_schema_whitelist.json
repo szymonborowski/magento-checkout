@@ -1,0 +1,27 @@
+{
+    "sb_order_type_option": {
+        "column": {
+            "id": true,
+            "label": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SB_ORDER_TYPE_OPTION_LABEL": true
+        }
+    },
+    "sb_order_type": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "order_type_id": true,
+            "quote_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SB_ORDER_TYPE_ORDER_TYPE_ID_SB_ORDER_TYPE_OPTION_ID": true,
+            "SB_ORDER_TYPE_ORDER_ID_SALES_ORDER_ENTITY_ID": true,
+            "SB_ORDER_TYPE_QUOTE_ID_QUOTE_ENTITY_ID": true,
+            "SB_ORDER_TYPE_QUOTE_ID": true
+        }
+    }
+}

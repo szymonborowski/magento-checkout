@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Szymon Borowski <szymon.borowski@gmail.com>
+ * @copyright Copyright (c) 2024, Szymon Borowski
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route url="/V1/guest-carts/:cartId/order-type" method="POST">
+        <service class="Szymonborowski\Checkout\Api\OrderTypeManagementInterface" method="saveOrderTypeOnQuestCart"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <route url="/V1/carts/mine/order-type" method="POST">
+        <service class="Szymonborowski\Checkout\Api\OrderTypeManagementInterface" method="saveOrderTypeOnCustomerCart"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+            <parameter name="orderTypeId" force="false">%order_type_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/guest-carts/:cartId/order-type" method="GET">
+        <service class="Szymonborowski\Checkout\Api\OrderTypeManagementInterface" method="getOrderTypeOnQuestCart"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <route url="/V1/carts/mine/:cartId/order-type/" method="GET">
+        <service class="Szymonborowski\Checkout\Api\OrderTypeManagementInterface" method="getOrderTypeOnCustomerCart"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+</routes>

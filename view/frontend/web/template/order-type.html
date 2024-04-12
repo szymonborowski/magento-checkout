@@ -1,0 +1,49 @@
+<li id="order-type"
+    class="checkout-order-type"
+    data-bind="fadeVisible: isVisible, attr: { id: stepCode }"
+    role="presentation">
+    <div class="step-title" data-role="title" data-bind="i18n: label"></div>
+    <div id="checkout-shipping-method-load" if="rates().length">
+        <table class="table-checkout-shipping-method">
+            <thead>
+            <tr class="row">
+                <th class="col col-order-radio" translate="'Select Order Type'"></th>
+                <th class="col col-label" translate="'Label'"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- ko foreach: { data: rates(), as: 'orderType'} -->
+            <tr class="row">
+                <td class="col col-method">
+                    <input type="radio"
+                           class="radio"
+                           name="order_type"
+                           data-bind="event: {change: ($parent).setOrderType}"
+                           ifnot="orderType.error_message"
+                           ko-value="orderType.value"
+                    />
+                </td>
+                <td class="col col-method"
+                    attr="'id': 'order_type_' + orderType.value"
+                    text="orderType.label"></td>
+            </tr>
+            <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+    <div class="no-quotes-block"
+         ifnot="rates().length > 0"
+         translate="'No order type is available now'">
+    </div>
+    <div class="checkout-shipping-method methods-shipping">
+        <div class="step-content">
+            <div class="actions-toolbar" id="order-type-buttons-container">
+                <div class="primary">
+                    <button data-role="opc-continue" type="button" class="button action continue primary" data-bind="click: setOrderTypeInformation">
+                        <span data-bind="i18n: 'Next'">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

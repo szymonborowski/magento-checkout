@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Szymon Borowski <szymon.borowski@gmail.com>
+ * @copyright 2024 Szymon Borowski <szymon.borowski@gmail.com>
+ */
+  -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sb_order_type_option" resource="default" engine="innodb" comment="Order type available options">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="label" length="50" nullable="false" comment="Default label"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="UNIQUE">
+            <column name="label"/>
+        </constraint>
+    </table>
+
+    <table name="sb_order_type" resource="default" engine="innodb" comment="Order type attribute values table">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="false" comment="Quote ID"/>
+        <column xsi:type="int" name="order_type_id" unsigned="true" nullable="false" comment="Order type ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="UNIQUE">
+            <column name="quote_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="QUOTE_ENTITY_ID_SB_ORDER_TYPE_QUOTE_ID"
+                    table="sb_order_type" column="quote_id"
+                    referenceTable="quote" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SB_ORDER_TYPE_OPTION_ID_SB_ORDER_TYPE_ORDER_TYPE_ID"
+                    table="sb_order_type" column="order_type_id"
+                    referenceTable="sb_order_type_option" referenceColumn="id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>
